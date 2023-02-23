@@ -17,16 +17,9 @@ public class TestBase {
 
     SiteObjects siteObjects = new SiteObjects();
 
-//    static String currentCityRus = "Тольятти";
-//    static String currentCityEng = "Tolyatti";
-//    static String x5Group = "X5 Group";
-//    static String x5GroupImport = "X5 GROUP, Import";
-//    static String x5Digital = "X5 Digital";
-
-
     @BeforeAll
     static void beforeAll() {
-        Configuration.baseUrl = "https://www.hh.ru";
+        Configuration.baseUrl = "https://www.imdb.com";
         Configuration.browser = System.getProperty("browserName","chrome");
         Configuration.browserVersion = System.getProperty("browserVersion","100.0");
         Configuration.browserSize = System.getProperty("screenSize","1366x768");
@@ -51,21 +44,38 @@ public class TestBase {
         Attach.addVideo();
     }
 
-//    static Stream<Arguments> menuItems() {
-//        return Stream.of(
-//                Arguments.of(List.of(currentCityEng,
-//                        "For job seekers",
-//                        "For employers",
-//                        "Completed resume",
-//                        "Career consulting",
-//                        "All services")),
-//                Arguments.of(List.of(currentCityRus,
-//                        "Соискателям",
-//                        "Работодателям",
-//                        "Готовое резюме",
-//                        "Карьерная консультация",
-//                        "Все сервисы"))
-//        );
-//    }
+    static Stream<Arguments> genres() {
+        return Stream.of(
+                Arguments.of(List.of(
+                        "Action",
+                        "Adventure",
+                        "Sci-Fi"))
+        );
+    }
+
+    static Stream<Arguments> headersItems() {
+        return Stream.of(
+                Arguments.of(List.of(
+                        "Chris Tucker",
+                        "Awards Circuit Community Awards",
+                        "BET Awards",
+                        "Blockbuster Entertainment Awards",
+                        "Capri, Hollywood",
+                        "Central Ohio Film Critics Association",
+                        "Gold Derby Awards",
+                        "Gotham Awards",
+                        "Image Awards (NAACP)",
+                        "Kids' Choice Awards, USA",
+                        "MTV Movie + TV Awards",
+                        "People's Choice Awards, USA",
+                        "Phoenix Film Critics Society Awards",
+                        "Razzie Awards",
+                        "Satellite Awards",
+                        "Screen Actors Guild Awards",
+                        "ShoWest Convention, USA",
+                        "Teen Choice Awards",
+                        "The Stinkers Bad Movie Awards"))
+        );
+    }
 
 }
