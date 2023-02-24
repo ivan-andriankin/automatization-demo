@@ -50,10 +50,9 @@ public class Tests extends TestBase {
     @MethodSource("genres")
     @ParameterizedTest(name="Проверить все жанры {0} фильма")
     void checkAllGenresInFilmPage(List<String> buttons) {
-        open("/title/tt0119116");
-        $("div[class=ipc-chip-list__scroller]")
-                .$$("span[class=ipc-chip__text]")
-                .shouldHave(texts(buttons));
+        siteObjects.openFilmPage("/title/tt0119116")
+                .checkSectionWithGenres(buttons)
+        ;
     }
 
 
