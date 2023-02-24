@@ -20,32 +20,36 @@ import static com.codeborne.selenide.Selenide.*;
 public class Tests extends TestBase {
 
 
+    @DisplayName("Найти в поиске фильм и перейти на страницу фильма из результата поиска")
     @Severity(SeverityLevel.NORMAL)
     @Test
-    void test2() {
-        siteObjects.openPage();
-        $(".imdb-header-search__input.searchTypeahead__input.react-autosuggest__input")
-                .setValue("the fifth element");
-        $("li[id=react-autowhatever-1--item-0]").shouldHave(text("Bruce Willis, Milla Jovovich"));
-
+    void findFilmInSearchFieldAndGoToFilmPageFromSearchResults() {
+        siteObjects.openPage()
+                .putNameInSearchInputField(fifthElementName)
+                .validateSearchResultByEntitySignature(fifthElementSignature)
+                .clickOnFirstItemInSearchResult()
+                .checkCorrectnesOfFilmNameInFilmPage(fifthElementName)
+        ;
     }
 
 
+    @DisplayName("Найти в поиске актера и перейти на страницу актера из результата поиска")
     @Severity(SeverityLevel.NORMAL)
     @Test
-    void test3() {
-        siteObjects.openPage();
-        $(".imdb-header-search__input.searchTypeahead__input.react-autosuggest__input")
-                .setValue("the fifth element");
-        $("li[id=react-autowhatever-1--item-0]")
-                .$(withTagAndText("div", "Bruce Willis, Milla Jovovich")).click();
+    void findActorInSearchFieldAndGoToActorPageFromSearchResults() {
+        siteObjects.openPage()
+                .putNameInSearchInputField(jackieChan)
+                .validateSearchResultByEntitySignature(jackieChanSignature)
+                .clickOnFirstItemInSearchResult()
+                .checkCorrectnesOfActorNameInActorPage(jackieChan)
+        ;
     }
 
 
     @Severity(SeverityLevel.NORMAL)
     @MethodSource("genres")
     @ParameterizedTest(name="Проверить все жанры {0} фильма")
-    void test4(List<String> buttons) {
+    void checkAllGenresInFilmPage(List<String> buttons) {
         open("/title/tt0119116");
         $("div[class=ipc-chip-list__scroller]")
                 .$$("span[class=ipc-chip__text]")
@@ -53,10 +57,10 @@ public class Tests extends TestBase {
     }
 
 
-    @DisplayName("Проверить фильтр и результат фильтрации в разделе Credits у актера Chris Tucker")
+    @DisplayName("Проверить фильтр и результат фильтрации в разделе Credits на странице актера")
     @Severity(SeverityLevel.NORMAL)
     @Test
-    void test5() {
+    void checkFilterAndFilteredResultInCreditsOnActorPage() {
         open("/title/tt0119116");
         $(withTagAndText("a", "Chris Tucker")).click();
         $("#name-filmography-filter-actor").click();
@@ -70,8 +74,8 @@ public class Tests extends TestBase {
 
     @Severity(SeverityLevel.NORMAL)
     @MethodSource("headersItems")
-    @ParameterizedTest(name="Проверить все жанры {0} фильма")
-    void test6(List<String> headers) {
+    @ParameterizedTest(name="Проверить все заголовки на странице Awards")
+    void checkAllHeadersInAwardsPage(List<String> headers) {
         open("/name/nm0000676");
         $(withTagAndText("a", "Awards")).click();
         $(".article.listo").$$("h3").shouldHave(texts(headers));

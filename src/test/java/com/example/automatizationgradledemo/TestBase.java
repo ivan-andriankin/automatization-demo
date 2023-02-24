@@ -17,6 +17,12 @@ public class TestBase {
 
     SiteObjects siteObjects = new SiteObjects();
 
+    static String fifthElementName = "Пятый элемент";
+    static String fifthElementSignature = "Bruce Willis, Milla Jovovich";
+    static String jackieChan = "Jackie Chan";
+    static String jackieChanSignature = "Actor, Who Am I? (1998)";
+
+
     @BeforeAll
     static void beforeAll() {
         Configuration.baseUrl = "https://www.imdb.com";
