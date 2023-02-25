@@ -50,7 +50,7 @@ public class Tests extends TestBase {
     @MethodSource("genres")
     @ParameterizedTest(name="Проверить все жанры {0} фильма")
     void checkAllGenresInFilmPage(List<String> buttons) {
-        siteObjects.openFilmPage("/title/tt0119116")
+        siteObjects.openFilmPage(fifthElementUrl)
                 .checkSectionWithGenres(buttons)
         ;
     }
@@ -60,24 +60,24 @@ public class Tests extends TestBase {
     @Severity(SeverityLevel.NORMAL)
     @Test
     void checkFilterAndFilteredResultInCreditsOnActorPage() {
-        open("/title/tt0119116");
-        $(withTagAndText("a", "Chris Tucker")).click();
-        $("#name-filmography-filter-actor").click();
-        sleep(1000);
-        $("#name-filmography-filter-writer").click();
-        sleep(1000);
-        $("label[data-testid=accordion-item-producer-previous-projects]").click();
-        $("li[data-testid=nm_flmg_credit_producer_0]").shouldBe(visible);
+        siteObjects.openFilmPage(fifthElementUrl)
+                .clickChrisTuckerUrl()
+                .clickActorFilterButton()
+                .clickWriterFilterButton()
+                .expandProducerSection()
+                .checkFirstItemInProducerSection()
+        ;
     }
 
 
     @Severity(SeverityLevel.NORMAL)
     @MethodSource("headersItems")
-    @ParameterizedTest(name="Проверить все заголовки на странице Awards")
+    @ParameterizedTest(name="Проверить все заголовки на странице Awards у актера")
     void checkAllHeadersInAwardsPage(List<String> headers) {
-        open("/name/nm0000676");
-        $(withTagAndText("a", "Awards")).click();
-        $(".article.listo").$$("h3").shouldHave(texts(headers));
+        siteObjects.openFilmPage(chrisTuckerUrl)
+                .clickAwardsUrl()
+                .checkAllAwardsHeadersInActorPage(headers)
+        ;
     }
 
 

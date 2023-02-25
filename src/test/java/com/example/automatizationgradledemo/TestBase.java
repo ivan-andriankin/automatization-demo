@@ -21,6 +21,8 @@ public class TestBase {
     static String fifthElementSignature = "Bruce Willis, Milla Jovovich";
     static String jackieChan = "Jackie Chan";
     static String jackieChanSignature = "Actor, Who Am I? (1998)";
+    static String fifthElementUrl = "/title/tt0119116";
+    static String chrisTuckerUrl = "/name/nm0000676";
 
 
     @BeforeAll
