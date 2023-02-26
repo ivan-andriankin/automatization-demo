@@ -10,11 +10,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.CollectionCondition.texts;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selectors.withTagAndText;
-import static com.codeborne.selenide.Selenide.*;
 
 @Tag("vacancy_tests")
 public class Tests extends TestBase {

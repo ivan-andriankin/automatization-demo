@@ -17,7 +17,7 @@ public class TestBase {
 
     SiteObjects siteObjects = new SiteObjects();
 
-    static String fifthElementName = "Пятый элемент";
+    static String fifthElementName = "The Fifth Element";
     static String fifthElementSignature = "Bruce Willis, Milla Jovovich";
     static String jackieChan = "Jackie Chan";
     static String jackieChanSignature = "Actor, Who Am I? (1998)";
